@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import customtkinter as ctk
 
 from common.models.time_entry_model import TimeEntryModel
@@ -28,11 +30,21 @@ class TimeEntryFrame(ctk.CTkFrame):
         "Creates a single value field in the frame."
         val = ctk.CTkEntry(self, height=5, width=width)
         val.insert("end", value)
+        val.bind("<FocusOut>", self.save_entry)
         val.pack(expand=True, side="left", padx=5, pady=5)
+
         return val
 
     def _generate_values(self):
         "Creates the row of values for the time entry."
+
+        # transform date from yyyy-mm-dd to a datetime
+        day_of_week = datetime.strptime(
+            self.time_entry.date, "%Y-%m-%d").strftime("%A")
+        day_of_week_label = ctk.CTkLabel(
+            self, text=day_of_week, fg_color="#1c1c1c", corner_radius=5, width=100)
+        day_of_week_label.pack(side="left", padx=4, pady=4)
+
         self.date_value = self._create_value(self.time_entry.date, 0, 0, 100)
         self.start_time_value = self._create_value(
             self.time_entry.start_time, 1, 0, 70)
@@ -43,25 +55,20 @@ class TimeEntryFrame(ctk.CTkFrame):
         self.note_value = self._create_value(
             self.time_entry.note, 4, 0, 200)
 
-        self.save = ctk.CTkButton(
-            self, text="Save", command=self.save_entry, width=50)
-        self.save.pack(side="left", padx=5, pady=5)
-
     def _create_labels(self, headers):
-        header_widths = [80, 70, 70, 50, 200]
+        header_widths = [220, 70, 70, 50, 150]
         # Skip the first header
         for i, header in enumerate(headers[2:]):
             label = ctk.CTkLabel(self, fg_color="#1c1c1c", corner_radius=5,
                                  text=header, width=header_widths[i])
             label.pack(side="left", padx=4, pady=4)
 
-        action_button_label = ctk.CTkLabel(
-            self, text="Action", fg_color="#1c1c1c", corner_radius=5, width=30)
-        action_button_label.pack(side="left", padx=4, pady=4)
-
-    def save_entry(self):
+    def save_entry(self, event):
         """Saves the current entry values."""
         # TODO: maybe call validator after getting data or in the save ? to think about.
+
+        # TODO: maybe validate the event.widget.get() value
+
         new_date = self.date_value.get()
         new_start_time = self.start_time_value.get()
         new_end_time = self.end_time_value.get()
