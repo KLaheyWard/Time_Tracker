@@ -8,3 +8,13 @@ entry_id,cycle_id,date,start_time,end_time,unpaid_break_duration_min,note
 7,1,2025-08-05,07:30,16:26,30,Regular work day
 8,1,2025-08-05,07:30,16:27,30,Regular work day
 9,1,2025-08-05,07:30,16:27,30,Regular work day
+10,2,2025-08-05,07:30,16:26,30,Regular work day
+11,2,2025-08-06,07:30,16:26,30,Regular work day
+12,2,2025-08-07,07:30,16:26,30,Regular work day
+13,2,2025-08-05,07:30,15:30,30,Holiday
+14,2,2025-08-05,07:30,16:20,30,Regular work day
+15,2,2025-08-05,07:30,16:20,30,Regular work day
+16,2,2025-08-05,07:30,16:20,30,Regular work day
+17,2,2025-08-05,07:30,16:30,30,Regular work day
+18,2,2025-08-05,07:30,16:50,30,Regular work day
+19,3,2025-08-05,07:30,16:20,30,Regular work day
