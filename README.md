@@ -10,4 +10,4 @@ A fun project to track compressed work hours based on cycles
 
 
 ### Another note
-- As (primarily) React developer, not sure if I like python UI code much... Who said that? 👀
+- As a (primarily) React developer, not sure if I like python UI code much... Who said that? 👀
